@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
 @AndroidEntryPoint
 class SplashFragment : Fragment() {
 
@@ -53,4 +54,5 @@ class SplashFragment : Fragment() {
             }
         }
     }
+
 }

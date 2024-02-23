@@ -8,7 +8,7 @@
     <string name="name">Name</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
-    <string name="submit">Submit</string>
+    <string name="submit">SUBMIT</string>
     <string name="fillAllFields">Please fill all fields.</string>
     <string name="genres">Genres</string>
     <string name="lastMovies">Last movies</string>
@@ -20,4 +20,6 @@
     <string name="actors">Actors</string>
     <string name="splashlogo">splashLogo</string>
     <string name="movieApp">MovieApp</string>
+    <string name="userAvatar">userAvatar</string>
+    <string name="nameInput">Enter Your Name</string>
 </resources>
