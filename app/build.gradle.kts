@@ -84,6 +84,8 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     //DataStore")
     implementation ("androidx.datastore:datastore-preferences:1.0.0")
+    //Dynamic sizes
+    implementation ("com.github.MrNouri:DynamicSizes:1.0")
     //other
     implementation ("me.relex:circleindicator:2.1.6")
 
