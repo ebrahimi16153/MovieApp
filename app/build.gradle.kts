@@ -1,9 +1,10 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id ("kotlin-kapt")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
     id ("androidx.navigation.safeargs")
-    id ("dagger.hilt.android.plugin")
+
 }
 
 android {
@@ -54,7 +55,12 @@ dependencies {
 
 
 
-    //Navigation
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
+
+
+
+//    //Navigation
     implementation ("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation ("androidx.navigation:navigation-ui-ktx:2.7.7")
     //Room components
@@ -69,12 +75,14 @@ dependencies {
     implementation ("com.squareup.okhttp3:okhttp:4.9.1")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.7.2")
     //Dagger - Hilt
-    implementation ("com.google.dagger:hilt-android:2.40.5")
-    kapt ("com.google.dagger:hilt-compiler:2.40.5")
-    kapt ("androidx.hilt:hilt-compiler:1.2.0")
-    //Coroutines
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
+//    implementation ("com.google.dagger:hilt-android:2.42")
+//    kapt ("com.google.dagger:hilt-compiler:2.42")
+//    kapt ("androidx.hilt:hilt-compiler:1.2.0")
+//    //Coroutines
+//    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+//    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
     //Image Loading
     implementation ("io.coil-kt:coil:1.4.0")
     //Gson
