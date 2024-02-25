@@ -7,13 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import com.github.ebrahimi16153.movieapp.R
 import com.github.ebrahimi16153.movieapp.databinding.FragmentRegisterBinding
+import com.github.ebrahimi16153.movieapp.utils.UserTokenDataStore
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class RegisterFragment : Fragment() {
 
+    // binding
     private lateinit var binding: FragmentRegisterBinding
+
+    //dataStore
+    @Inject
+    private lateinit var userDataStore: UserTokenDataStore
 
 
     override fun onCreateView(
