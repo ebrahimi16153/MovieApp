@@ -7,7 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.github.ebrahimi16153.movieapp.R
 import com.github.ebrahimi16153.movieapp.databinding.FragmentRegisterBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class RegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentRegisterBinding
@@ -24,6 +27,15 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //initViews
+        binding.apply {
+
+
+
+        }
+
+
     }
 
 
