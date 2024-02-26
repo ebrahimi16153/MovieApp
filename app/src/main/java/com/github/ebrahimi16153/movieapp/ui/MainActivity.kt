@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
             // handel which destination show bottom nav
             navController.addOnDestinationChangedListener { _, destination, _ ->
 
-                if (destination.id == R.id.splashFragment2) {
+                if (destination.id == R.id.splashFragment2 || destination.id == R.id.registerFragment) {
                     bottomNav.visibility = View.GONE
                 } else {
                     bottomNav.visibility = View.VISIBLE

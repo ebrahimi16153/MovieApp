@@ -1,14 +1,23 @@
 package com.github.ebrahimi16153.movieapp.ui.register
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.datastore.dataStore
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.coroutineScope
+import androidx.lifecycle.lifecycleScope
 import com.github.ebrahimi16153.movieapp.R
 import com.github.ebrahimi16153.movieapp.databinding.FragmentRegisterBinding
+import com.github.ebrahimi16153.movieapp.models.register.BodyRegister
 import com.github.ebrahimi16153.movieapp.utils.UserTokenDataStore
+import com.github.ebrahimi16153.movieapp.viewmodel.RegisterViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -20,7 +29,18 @@ class RegisterFragment : Fragment() {
 
     //dataStore
     @Inject
-    private lateinit var userDataStore: UserTokenDataStore
+    lateinit var userDataStore: UserTokenDataStore
+
+    // bodyRegister
+//    @Inject
+//    lateinit var bodyRegister: BodyRegister
+
+    // registerViewModel
+
+
+    private var bodyRegister: BodyRegister = BodyRegister()
+
+    private val registerViewModel: RegisterViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -35,15 +55,51 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //initViews
+
+
         binding.apply {
 
 
+            btnSubmit.setOnClickListener { view ->
+                val name = edtName.text.toString()
+                val email = edtEmail.text.toString()
+                val pass = edtPassword.text.toString()
 
+                if (name.isNotEmpty() && email.isNotEmpty() && pass.isNotEmpty()) {
+
+                    bodyRegister.name = name
+                    bodyRegister.email = email
+                    bodyRegister.password = pass
+                    registerViewModel.registerUser(bodyRegister)
+
+                } else {
+                    Snackbar.make(
+                        view,
+                        "name email and password can't be empty",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+            registerViewModel.registerUser(bodyRegister)
+            registerViewModel.loadingState.observe(viewLifecycleOwner) { isShow ->
+
+                if (isShow) {
+                    btnSubmit.visibility = View.INVISIBLE
+                    loadingBtnSubmit.visibility = View.VISIBLE
+                } else {
+                    loadingBtnSubmit.visibility = View.INVISIBLE
+                    btnSubmit.visibility = View.VISIBLE
+                }
+
+                registerViewModel.registerUser.observe(viewLifecycleOwner) { reponse ->
+
+                    lifecycle.coroutineScope.launch {
+                        userDataStore.saveUserToken(reponse.name)
+                    }
+
+                }
+            }
         }
-
-
     }
-
-
 }

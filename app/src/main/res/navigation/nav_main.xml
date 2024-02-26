@@ -12,10 +12,11 @@
         <action
             android:id="@+id/actionSpalshToRegister"
             app:destination="@id/registerFragment" />
-        <action
-            android:id="@+id/actionSplashToHome"
-            app:destination="@id/homeFragment" />
+
     </fragment>
+    <action
+        android:id="@+id/actionSplashToHome"
+        app:destination="@id/homeFragment" />
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.github.ebrahimi16153.movieapp.ui.register.RegisterFragment"

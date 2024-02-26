@@ -15,25 +15,41 @@ import javax.inject.Inject
 class RegisterViewModel @Inject constructor(private val registerRepository: RegisterRepository):ViewModel() {
 
      val registerUser = MutableLiveData<ResponseRegister>()
-    val loadingState = MutableLiveData<Boolean>()
+    val loadingState = MutableLiveData(false)
 
-    fun registerUser(bodyRegister: BodyRegister){
+    fun registerUser(bodyRegister: BodyRegister) = viewModelScope.launch {
 
-        viewModelScope.launch {
-            loadingState.postValue(true)
+        loadingState.postValue(true)
+        val response = registerRepository.registerUser(bodyRegister = bodyRegister)
 
-            val responseOfRegister = registerRepository.registerUser(bodyRegister = bodyRegister)
-
-            if (responseOfRegister.isSuccessful){
-
-                registerUser.postValue(responseOfRegister.body())
-
-            }
-            loadingState.postValue(false)
-
+        if (response.isSuccessful){
+            registerUser.postValue(response.body())
         }
 
+        loadingState.postValue(false)
+
     }
+
+
+
+
+//    {
+//
+//        viewModelScope.launch {
+//            loadingState.postValue(true)
+//
+//            val responseOfRegister = registerRepository.registerUser(bodyRegister = bodyRegister)
+//
+//            if (responseOfRegister.isSuccessful){
+//
+//                registerUser.postValue(responseOfRegister.body())
+//
+//            }
+//            loadingState.postValue(false)
+//
+//        }
+//
+//    }
 
 
 
