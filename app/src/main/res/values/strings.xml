@@ -22,4 +22,5 @@
     <string name="movieApp">MovieApp</string>
     <string name="userAvatar">userAvatar</string>
     <string name="nameInput">Enter Your Name</string>
+    <string name="mainBannerImage">mainBannerImage</string>
 </resources>

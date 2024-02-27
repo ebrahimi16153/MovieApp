@@ -12,7 +12,6 @@ import com.github.ebrahimi16153.movieapp.databinding.FragmentSplashBinding
 import com.github.ebrahimi16153.movieapp.utils.UserTokenDataStore
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -49,7 +48,7 @@ class SplashFragment : Fragment() {
                 if (token.isEmpty())
                     findNavController().navigate(R.id.actionSpalshToRegister)
                 else
-                    findNavController().navigate(R.id.actionSplashToHome
+                    findNavController().navigate(R.id.actionToHome
                 )
             }
         }

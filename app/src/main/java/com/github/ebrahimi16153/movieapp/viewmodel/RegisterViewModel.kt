@@ -15,7 +15,7 @@ import javax.inject.Inject
 class RegisterViewModel @Inject constructor(private val registerRepository: RegisterRepository):ViewModel() {
 
      val registerUser = MutableLiveData<ResponseRegister>()
-    val loadingState = MutableLiveData(false)
+    val loadingState = MutableLiveData<Boolean>()
 
     fun registerUser(bodyRegister: BodyRegister) = viewModelScope.launch {
 
@@ -29,29 +29,4 @@ class RegisterViewModel @Inject constructor(private val registerRepository: Regi
         loadingState.postValue(false)
 
     }
-
-
-
-
-//    {
-//
-//        viewModelScope.launch {
-//            loadingState.postValue(true)
-//
-//            val responseOfRegister = registerRepository.registerUser(bodyRegister = bodyRegister)
-//
-//            if (responseOfRegister.isSuccessful){
-//
-//                registerUser.postValue(responseOfRegister.body())
-//
-//            }
-//            loadingState.postValue(false)
-//
-//        }
-//
-//    }
-
-
-
-
 }

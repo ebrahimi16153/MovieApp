@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!--image-->
+    <ImageView
+        android:id="@+id/mainBannerImage"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_300mdp"
+        android:contentDescription="@string/mainBannerImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--shadow-->
+    <View
+        android:id="@+id/shadowOfMainBanner"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_150mdp"
+        android:background="@drawable/shadow"
+        app:layout_constraintBottom_toBottomOf="@id/mainBannerImage"
+        app:layout_constraintEnd_toEndOf="@id/mainBannerImage"
+        app:layout_constraintStart_toStartOf="@id/mainBannerImage" />
+
+    <!--name-->
+    <TextView
+        android:id="@+id/MainBannerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_10mdp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        app:drawableTint="@color/crayola"
+        app:layout_constraintBottom_toTopOf="@+id/MainBannerInfo"
+        app:layout_constraintEnd_toEndOf="@id/mainBannerImage"
+        app:layout_constraintStart_toStartOf="@id/mainBannerImage" />
+
+    <!--info-->
+    <TextView
+        android:id="@+id/MainBannerInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_10mdp"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-light"
+        android:maxLines="1"
+        android:textColor="@color/philippineSilver"
+        app:drawableStartCompat="@drawable/ic_round_star_24"
+        app:drawableTint="@color/crayola"
+        app:layout_constraintBottom_toBottomOf="@id/mainBannerImage"
+        app:layout_constraintEnd_toEndOf="@id/mainBannerImage"
+        app:layout_constraintStart_toStartOf="@id/mainBannerImage" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
