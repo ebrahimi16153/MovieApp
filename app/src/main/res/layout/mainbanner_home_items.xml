@@ -6,6 +6,7 @@
 
     <!--image-->
     <ImageView
+        android:scaleType="centerCrop"
         android:id="@+id/mainBannerImage"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_300mdp"

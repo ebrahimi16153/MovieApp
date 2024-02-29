@@ -14,6 +14,7 @@ import com.github.ebrahimi16153.movieapp.R
 import com.github.ebrahimi16153.movieapp.databinding.FragmentRegisterBinding
 import com.github.ebrahimi16153.movieapp.models.register.BodyRegister
 import com.github.ebrahimi16153.movieapp.utils.UserTokenDataStore
+import com.github.ebrahimi16153.movieapp.utils.setVisibility
 import com.github.ebrahimi16153.movieapp.viewmodel.RegisterViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -85,11 +86,11 @@ class RegisterFragment : Fragment() {
             registerViewModel.loadingState.observe(viewLifecycleOwner) { isShow ->
 
                 if (isShow) {
-                    btnSubmit.visibility = View.INVISIBLE
-                    loadingBtnSubmit.visibility = View.VISIBLE
+                    btnSubmit.setVisibility(false)
+                    loadingBtnSubmit.setVisibility(true)
                 } else {
-                    loadingBtnSubmit.visibility = View.INVISIBLE
-                    btnSubmit.visibility = View.VISIBLE
+                    loadingBtnSubmit.setVisibility(true)
+                    btnSubmit.setVisibility(false)
                 }
 
                 registerViewModel.registerUser.observe(viewLifecycleOwner) { reponse ->
