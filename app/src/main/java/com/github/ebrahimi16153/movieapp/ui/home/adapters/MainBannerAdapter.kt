@@ -31,7 +31,7 @@ class MainBannerAdapter @Inject constructor() :
         holder.setIsRecyclable(false)
     }
 
-    override fun getItemCount() = 5
+    override fun getItemCount() = differ.currentList.size
 
     inner class ViewHolder : RecyclerView.ViewHolder(binding.root) {
 

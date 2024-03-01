@@ -1,5 +1,6 @@
 package com.github.ebrahimi16153.movieapp.api
 
+import com.github.ebrahimi16153.movieapp.models.home.ResponseOfGenresList
 import com.github.ebrahimi16153.movieapp.models.home.ResponseOfMovieList
 import com.github.ebrahimi16153.movieapp.models.register.BodyRegister
 import com.github.ebrahimi16153.movieapp.models.register.ResponseRegister
@@ -19,6 +20,9 @@ interface ApiServices {
     // Home Main Banner MovieList
     @GET("genres/{genre_id}/movies")
     suspend fun getMainBannerMovieList(@Path("genre_id") id: Int): Response<ResponseOfMovieList>
+
+    @GET("genres")
+    suspend fun getGenres():Response<ResponseOfGenresList>
 
 
 }

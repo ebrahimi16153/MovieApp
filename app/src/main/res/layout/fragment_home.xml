@@ -50,6 +50,50 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <!--genres layout-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/topBannerLay"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/genresLay">
+
+                <!--genres title-->
+                <TextView
+                    android:layout_marginTop="@dimen/_5mdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/genres"
+                    android:textColor="@color/crayola"
+                    android:textSize="@dimen/_14font_mdp"
+                    android:fontFamily="sans-serif-light"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="@dimen/_10mdp"
+                    android:id="@+id/genresTitle"/>
+
+                <!--genres items-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="@dimen/_5mdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/genresRecyclerView"
+                    android:paddingHorizontal="@dimen/_10mdp"
+                    app:layout_constraintTop_toBottomOf="@+id/genresTitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:clipToPadding="false"
+                    />
+
+
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -86,11 +86,11 @@ class RegisterFragment : Fragment() {
             registerViewModel.loadingState.observe(viewLifecycleOwner) { isShow ->
 
                 if (isShow) {
-                    btnSubmit.setVisibility(false)
-                    loadingBtnSubmit.setVisibility(true)
+                    btnSubmit.setVisibility(true)
+                    loadingBtnSubmit.setVisibility(false)
                 } else {
-                    loadingBtnSubmit.setVisibility(true)
-                    btnSubmit.setVisibility(false)
+                    loadingBtnSubmit.setVisibility(false)
+                    btnSubmit.setVisibility(true)
                 }
 
                 registerViewModel.registerUser.observe(viewLifecycleOwner) { reponse ->

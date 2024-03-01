@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.github.ebrahimi16153.movieapp.R
 import com.github.ebrahimi16153.movieapp.databinding.FragmentHomeBinding
+import com.github.ebrahimi16153.movieapp.ui.home.adapters.GenresAdapter
 import com.github.ebrahimi16153.movieapp.ui.home.adapters.MainBannerAdapter
 import com.github.ebrahimi16153.movieapp.utils.initRecycler
 import com.github.ebrahimi16153.movieapp.viewmodel.HomeViewModel
@@ -22,9 +23,12 @@ class HomeFragment : Fragment() {
     //Binding
     private lateinit var binding: FragmentHomeBinding
 
-//    // adapter
+    // adapters
     @Inject
     lateinit var mainBannerAdapter: MainBannerAdapter
+
+    @Inject
+    lateinit var genresAdapter: GenresAdapter
 
 
     // viewModel
@@ -39,6 +43,7 @@ class HomeFragment : Fragment() {
         super.onCreate(savedInstanceState)
         //cal api for once
         viewModel.getMainBannerMovieList(id = 3)
+        viewModel.genresList()
     }
 
     override fun onCreateView(
@@ -55,26 +60,38 @@ class HomeFragment : Fragment() {
 
         binding.apply {
 
+            // getData MainBanner
             viewModel.mainBannerMoveList.observe(viewLifecycleOwner) { listOfMovie ->
-                // getData
+
                 mainBannerAdapter.differ.submitList(listOfMovie.data)
 
-//                mainBanner.initRecycler(
-//                    layoutManager = LinearLayoutManager(
-//                        requireContext(),
-//                        LinearLayoutManager.HORIZONTAL,
-//                        false
-//                    ), adapter = mainBannerAdapter
-//                )
+                // initRecycler is Extension function
+                mainBanner.initRecycler(
+                    layoutManager = LinearLayoutManager(
+                        requireContext(),
+                        LinearLayoutManager.HORIZONTAL,
+                        false
+                    ), adapter = mainBannerAdapter
+                )
 
-                mainBanner.adapter = mainBannerAdapter
-                mainBanner.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-
-
-
-                //attachIndicator and pageHelper
                 pageHelpers.attachToRecyclerView(mainBanner)
-                topBannerIndicator.attachToRecyclerView(mainBanner,pageHelpers)
+                topBannerIndicator.attachToRecyclerView(mainBanner, pageHelpers)
+
+
+            }
+
+
+            //getData Genres
+            viewModel.genres.observe(viewLifecycleOwner) {
+
+                genresAdapter.differ.submitList(it)
+                genresRecyclerView.initRecycler(
+                    layoutManager = LinearLayoutManager(
+                        requireContext(),
+                        LinearLayoutManager.HORIZONTAL,
+                        false
+                    ), adapter = genresAdapter
+                )
 
 
             }
