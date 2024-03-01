@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class ResponseOfMovieList(
     @SerializedName("data")
-    val `data`: List<Data?>?,
+    val `data`: List<Data> = emptyList(),
     @SerializedName("metadata")
     val metadata: Metadata?
 ) {

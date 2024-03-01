@@ -33,6 +33,8 @@
         android:layout_marginBottom="@dimen/_10mdp"
         android:ellipsize="end"
         android:maxLines="1"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="@dimen/_11font_mdp"
         app:drawableTint="@color/crayola"
         app:layout_constraintBottom_toTopOf="@+id/MainBannerInfo"
         app:layout_constraintEnd_toEndOf="@id/mainBannerImage"
@@ -40,6 +42,7 @@
 
     <!--info-->
     <TextView
+        android:gravity="center"
         android:id="@+id/MainBannerInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

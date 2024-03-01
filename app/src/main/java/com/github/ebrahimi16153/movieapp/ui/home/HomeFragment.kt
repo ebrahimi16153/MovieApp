@@ -12,7 +12,9 @@ import com.github.ebrahimi16153.movieapp.R
 import com.github.ebrahimi16153.movieapp.databinding.FragmentHomeBinding
 import com.github.ebrahimi16153.movieapp.ui.home.adapters.GenresAdapter
 import com.github.ebrahimi16153.movieapp.ui.home.adapters.MainBannerAdapter
+import com.github.ebrahimi16153.movieapp.ui.home.adapters.MovieListAdapter
 import com.github.ebrahimi16153.movieapp.utils.initRecycler
+import com.github.ebrahimi16153.movieapp.utils.setVisibility
 import com.github.ebrahimi16153.movieapp.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -30,6 +32,9 @@ class HomeFragment : Fragment() {
     @Inject
     lateinit var genresAdapter: GenresAdapter
 
+    @Inject
+    lateinit var lastMovieListAdapter: MovieListAdapter
+
 
     // viewModel
     private val viewModel: HomeViewModel by viewModels()
@@ -41,9 +46,11 @@ class HomeFragment : Fragment() {
     //this fun just call once when app launched
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //cal api for once
+
+        //call api for once
         viewModel.getMainBannerMovieList(id = 3)
         viewModel.genresList()
+        viewModel.latMovieList()
     }
 
     override fun onCreateView(
@@ -96,6 +103,34 @@ class HomeFragment : Fragment() {
 
             }
 
+            // get LatMovieList
+
+            viewModel.lastMovieList.observe(viewLifecycleOwner) {
+
+                lastMovieListAdapter.setData(data = it.data)
+                lastMovieRecyclerView.initRecycler(
+                    layoutManager = LinearLayoutManager(
+                        requireContext()
+                    ), adapter = lastMovieListAdapter
+                )
+
+
+            }
+
+            viewModel.loadingState.observe(viewLifecycleOwner) {
+
+                if (it) {
+                    homeLoading.setVisibility(true)
+                    nestedScroll.setVisibility(false)
+
+                } else {
+
+                    homeLoading.setVisibility(false)
+                    nestedScroll.setVisibility(true)
+                }
+
+
+            }
 
         }
 

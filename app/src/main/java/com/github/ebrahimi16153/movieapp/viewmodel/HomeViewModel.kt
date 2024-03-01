@@ -15,6 +15,8 @@ class HomeViewModel @Inject constructor(private val homeRepository: HomeReposito
 
     val mainBannerMoveList = MutableLiveData<ResponseOfMovieList>()
     val genres = MutableLiveData<ResponseOfGenresList>()
+    val lastMovieList = MutableLiveData<ResponseOfMovieList>()
+    val loadingState = MutableLiveData<Boolean>()
 
 
     // get MainBanner Movie List
@@ -34,17 +36,29 @@ class HomeViewModel @Inject constructor(private val homeRepository: HomeReposito
 
     }
 
-
-
     // get genres List
-    fun genresList(){
-        viewModelScope.launch{
+    fun genresList() {
+        viewModelScope.launch {
 
             val response = homeRepository.getGenres()
-            if (response.isSuccessful){
+            if (response.isSuccessful) {
                 genres.postValue(response.body())
             }
 
+        }
+    }
+
+    // get LastMovieList
+    fun latMovieList() {
+        viewModelScope.launch {
+            loadingState.postValue(true)
+            val response = homeRepository.getLastMovie()
+            if (response.isSuccessful) {
+
+                lastMovieList.postValue(response.body())
+
+            }
+            loadingState.postValue(false)
         }
     }
 

@@ -21,8 +21,13 @@ interface ApiServices {
     @GET("genres/{genre_id}/movies")
     suspend fun getMainBannerMovieList(@Path("genre_id") id: Int): Response<ResponseOfMovieList>
 
+    // list of genres
     @GET("genres")
     suspend fun getGenres():Response<ResponseOfGenresList>
+
+    // list of last movie
+    @GET("movies")
+    suspend fun getLastMovie():Response<ResponseOfMovieList>
 
 
 }

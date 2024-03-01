@@ -52,46 +52,81 @@
 
             <!--genres layout-->
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/genresLay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/topBannerLay"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:id="@+id/genresLay">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/topBannerLay">
 
                 <!--genres title-->
                 <TextView
-                    android:layout_marginTop="@dimen/_5mdp"
+                    android:id="@+id/genresTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10mdp"
+                    android:layout_marginTop="@dimen/_5mdp"
+                    android:fontFamily="sans-serif-light"
                     android:text="@string/genres"
                     android:textColor="@color/crayola"
                     android:textSize="@dimen/_14font_mdp"
-                    android:fontFamily="sans-serif-light"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="@dimen/_10mdp"
-                    android:id="@+id/genresTitle"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <!--genres items-->
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_marginTop="@dimen/_5mdp"
+                    android:id="@+id/genresRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/genresRecyclerView"
-                    android:paddingHorizontal="@dimen/_10mdp"
-                    app:layout_constraintTop_toBottomOf="@+id/genresTitle"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="@dimen/_5mdp"
                     android:clipToPadding="false"
-                    />
-
-
-
+                    android:paddingHorizontal="@dimen/_10mdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/genresTitle" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+            <!--LastMovie layout-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/lastMovieLay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/genresLay">
+
+                <!--genres title-->
+                <TextView
+                    android:id="@+id/lastMovieTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10mdp"
+                    android:layout_marginTop="@dimen/_5mdp"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/lastMovies"
+                    android:textColor="@color/crayola"
+                    android:textSize="@dimen/_14font_mdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!--lastMovie items-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/lastMovieRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5mdp"
+                    android:clipToPadding="false"
+                    android:paddingHorizontal="@dimen/_10mdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lastMovieTitle" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -99,5 +134,15 @@
 
     </androidx.core.widget.NestedScrollView>
 
+    <!--loading-->
+    <ProgressBar
+        android:id="@+id/homeLoading"
+        android:layout_width="@dimen/_40mdp"
+        android:layout_height="@dimen/_40mdp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
