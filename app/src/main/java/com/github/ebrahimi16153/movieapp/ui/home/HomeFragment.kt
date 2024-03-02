@@ -1,14 +1,13 @@
 package com.github.ebrahimi16153.movieapp.ui.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
-import com.github.ebrahimi16153.movieapp.R
 import com.github.ebrahimi16153.movieapp.databinding.FragmentHomeBinding
 import com.github.ebrahimi16153.movieapp.ui.home.adapters.GenresAdapter
 import com.github.ebrahimi16153.movieapp.ui.home.adapters.MainBannerAdapter
@@ -41,6 +40,14 @@ class HomeFragment : Fragment() {
 
     //pageHelper
     private val pageHelpers: PagerSnapHelper by lazy { PagerSnapHelper() }
+
+
+//    override fun onAttach(context: Context) {
+//        super.onAttach(context)
+//        viewModel.getMainBannerMovieList(id = 3)
+//        viewModel.genresList()
+//        viewModel.latMovieList()
+//    }
 
 
     //this fun just call once when app launched
