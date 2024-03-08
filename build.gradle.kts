@@ -6,15 +6,3 @@ plugins {
     id ("androidx.navigation.safeargs") version "2.7.7" apply false
 }
 
-//buildscript {
-//    repositories {
-//        google()
-//    }
-//    dependencies {
-//        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.7.7")
-////        classpath("com.android.tools.build:gradle:7.0.4")
-////        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22")
-////        classpath("com.google.dagger:hilt-android-gradle-plugin:2.42")
-//    }
-//}
-
