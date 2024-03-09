@@ -7,128 +7,287 @@
     tools:context=".ui.detail.DetailFragment">
 
 
-    <!--poster-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/posterLay"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/detailNestedScroll"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_400mdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <!--        backgroundPoster-->
-        <ImageView
-            android:id="@+id/backgroundPoster"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/detailContent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:alpha="0.1"
-            android:contentDescription="@string/backgroundPoster"
-            android:src="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent">
 
-        <!--mainPoster-->
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/mainPoster"
-            style="@style/imageViewCorner"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginVertical="@dimen/_5mdp"
-            android:scaleType="centerCrop"
+            <!--poster-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/posterLay"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_400mdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="9:16"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <!--        backgroundPoster-->
+                <ImageView
+                    android:id="@+id/backgroundPoster"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha="0.1"
+                    android:contentDescription="@string/backgroundPoster"
+                    android:src="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-       <!--posterShadow-->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_200mdp"
-            android:id="@+id/posterShadow"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:background="@drawable/shadow"/>
+                <!--mainPoster-->
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/mainPoster"
+                    style="@style/imageViewCorner"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginVertical="@dimen/_5mdp"
+                    android:scaleType="centerCrop"
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="9:16"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <!--topButtonLay-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/topButtonLay"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40mdp"
-        android:layout_margin="@dimen/_16mdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+                <!--posterShadow-->
+                <View
+                    android:id="@+id/posterShadow"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_200mdp"
+                    android:background="@drawable/shadow"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-        <!--backButton-->
-        <ImageView
-            android:id="@+id/detailBackButton"
-            android:layout_width="@dimen/_30mdp"
-            android:layout_height="@dimen/_30mdp"
-            android:background="@drawable/bg_circut"
-            android:contentDescription="@string/backNavigation"
-            android:padding="@dimen/_5mdp"
-            android:src="@drawable/ic_round_arrow_back_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/philippineSilver" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <!--topButtonLay-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/topButtonLay"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40mdp"
+                android:layout_margin="@dimen/_16mdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-
-
-        <!--favButton-->
-        <ImageView
-            android:padding="@dimen/_5mdp"
-            android:layout_width="@dimen/_30mdp"
-            android:layout_height="@dimen/_30mdp"
-            android:src="@drawable/ic_round_favorite_24"
-            android:id="@+id/detailFavButton"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/bg_circut"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:tint="@color/philippineSilver"
-            android:contentDescription="@string/backNavigation" />
+                <!--backButton-->
+                <ImageView
+                    android:id="@+id/detailBackButton"
+                    android:layout_width="@dimen/_35mdp"
+                    android:layout_height="@dimen/_35mdp"
+                    android:background="@drawable/bg_circut"
+                    android:contentDescription="@string/backNavigation"
+                    android:padding="@dimen/_8mdp"
+                    android:src="@drawable/ic_round_arrow_back_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/philippineSilver" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-     <!--infoLay-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_100mdp"
-        app:layout_constraintBottom_toBottomOf="@+id/posterLay"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/infoLay">
-
-      <!--title-->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="@dimen/_16mdp"
-            android:textSize="@dimen/_18font_mdp"
-            android:gravity="center"
-            android:fontFamily="sans-serif-medium"
-            android:maxLines="2"
-            android:textColor="@color/philippineSilver"
-            android:ellipsize="end"
-            android:id="@+id/detailTitle"/>
-
-       <!--info-->
+                <!--favButton-->
+                <ImageView
+                    android:id="@+id/detailFavButton"
+                    android:layout_width="@dimen/_35mdp"
+                    android:layout_height="@dimen/_35mdp"
+                    android:background="@drawable/bg_circut"
+                    android:contentDescription="@string/backNavigation"
+                    android:padding="@dimen/_8mdp"
+                    android:src="@drawable/ic_round_favorite_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/philippineSilver" />
 
 
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--infoLay-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/infoLay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/posterLay"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <!--title-->
+                <TextView
+                    android:id="@+id/detailTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_16mdp"
+                    android:layout_marginBottom="@dimen/_10mdp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="@string/app_name"
+                    android:textColor="@color/philippineSilver"
+                    android:textSize="@dimen/_18font_mdp"
+                    app:layout_constraintBottom_toTopOf="@id/rate"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!--rate-->
+                <TextView
+                    android:id="@+id/rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/_5mdp"
+                    android:textColor="@color/crayola"
+                    android:textSize="@dimen/_14font_mdp"
+                    app:drawableStartCompat="@drawable/ic_round_star_24"
+                    app:drawableTint="@color/philippineSilver"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/time"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/detailTitle" />
+
+                <!--time-->
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/_5mdp"
+                    android:textColor="@color/crayola"
+                    android:textSize="@dimen/_14font_mdp"
+                    app:drawableStartCompat="@drawable/ic_round_access_time_24"
+                    app:drawableTint="@color/philippineSilver"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/year"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/rate"
+                    app:layout_constraintTop_toBottomOf="@id/detailTitle" />
+
+                <!--year-->
+                <TextView
+                    android:id="@+id/year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/_5mdp"
+                    android:textColor="@color/crayola"
+                    android:textSize="@dimen/_14font_mdp"
+                    app:drawableStartCompat="@drawable/ic_round_calendar_today_24"
+                    app:drawableTint="@color/philippineSilver"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/time"
+                    app:layout_constraintTop_toBottomOf="@id/detailTitle" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--summeryLay-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/summeryLay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/infoLay">
+
+                <!--summery-->
+                <TextView
+                    android:id="@+id/summery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10mdp"
+                    android:layout_marginVertical="@dimen/_5mdp"
+                    android:drawablePadding="@dimen/_7mdp"
+                    android:text="@string/summary"
+                    android:textColor="@color/crayola"
+                    android:textSize="@dimen/_15font_mdp"
+                    app:drawableStartCompat="@drawable/ic_round_info_24"
+                    app:drawableTint="@color/philippineSilver"
+                    app:layout_constraintBottom_toTopOf="@id/description"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!--description-->
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10mdp"
+                    android:layout_marginVertical="@dimen/_5mdp"
+                    android:text="@string/app_name"
+                    android:textColor="@color/philippineSilver"
+                    android:textSize="@dimen/_12font_mdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/summery" />
+
+
+                <!--actors-->
+                <TextView
+                    android:id="@+id/actors"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10mdp"
+                    android:layout_marginVertical="@dimen/_5mdp"
+                    android:drawablePadding="@dimen/_7mdp"
+                    android:text="@string/summary"
+                    android:textColor="@color/crayola"
+                    android:textSize="@dimen/_15font_mdp"
+                    app:drawableStartCompat="@drawable/ic_round_person_24"
+                    app:drawableTint="@color/philippineSilver"
+                    app:layout_constraintBottom_toTopOf="@id/actorsName"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/description" />
+
+                <!--actorsNane-->
+                <TextView
+                    android:id="@+id/actorsName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10mdp"
+                    android:layout_marginVertical="@dimen/_5mdp"
+                    android:text="@string/app_name"
+                    android:textColor="@color/philippineSilver"
+                    android:textSize="@dimen/_12font_mdp"
+                    app:layout_constraintBottom_toTopOf="@id/actorsImage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/actors" />
+
+
+                <!--actorsImage-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/actorsImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:paddingStart="@dimen/_10mdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/actorsName"
+                    tools:ignore="RtlSymmetry" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--loading-->
+            <ProgressBar
+                android:layout_width="@dimen/_40mdp"
+                android:layout_height="@dimen/_40mdp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
