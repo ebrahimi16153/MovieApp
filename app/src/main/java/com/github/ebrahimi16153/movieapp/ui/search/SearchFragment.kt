@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.ebrahimi16153.movieapp.databinding.FragmentSearchBinding
 import com.github.ebrahimi16153.movieapp.ui.home.adapters.MovieListAdapter
@@ -59,6 +60,13 @@ class SearchFragment : Fragment() {
                     searchMovieListRecycler.initRecycler(layoutManager = LinearLayoutManager(requireContext()), adapter = movieListAdapter)
 
                 }
+
+
+
+            }
+            movieListAdapter.seOnItemClickListener {data ->
+                val directions = SearchFragmentDirections.actionToDetailFragment3(data.id!!)
+                findNavController().navigate(directions)
             }
             viewModel.loading.observe(viewLifecycleOwner){ isShow ->
                 if (isShow){

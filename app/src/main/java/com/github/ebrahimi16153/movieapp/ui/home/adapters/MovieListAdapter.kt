@@ -47,6 +47,15 @@ class MovieListAdapter @Inject constructor() :
             binding.moviePoster.load(item.poster) {
                 crossfade(true)
                 crossfade(800)
+
+
+            }
+            binding.root.setOnClickListener {
+
+                onItemClickListener?.let {
+                    it(item)
+                }
+
             }
         }
 
@@ -83,5 +92,14 @@ class MovieListAdapter @Inject constructor() :
             oldItems[oldItemPosition] === newItems[newItemPosition]
 
     }
+
+
+    // onClickListener
+    private var onItemClickListener:((Data) -> Unit)? = null
+
+    fun seOnItemClickListener(listener:(Data) -> Unit){
+        onItemClickListener = listener
+    }
+
 
 }

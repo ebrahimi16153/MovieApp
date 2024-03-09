@@ -3,6 +3,7 @@ package com.github.ebrahimi16153.movieapp.ui.favorite
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.AdapterView.OnItemClickListener
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -44,10 +45,23 @@ class FavMovieListAdapter @Inject constructor():RecyclerView.Adapter<FavMovieLis
                     crossfade(true)
                     crossfade(800)
                 }
+
+                binding.root.setOnClickListener {
+                    onItemClickListener?.let {
+                        it(item)
+                    }
+                }
             }
 
         }
 
+
+    //onClickListener
+    private var onItemClickListener:((FavMovie)->Unit)? = null
+
+    fun onItemClickListener(listener:(FavMovie)->Unit){
+        onItemClickListener = listener
+    }
 
         // a differ class and function for dynamic adapter -> when data of adapter can change many times
         // whe must handel oldItems and new items, in fact we handel how adapter update new items
