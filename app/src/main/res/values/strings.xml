@@ -23,4 +23,6 @@
     <string name="userAvatar">userAvatar</string>
     <string name="nameInput">Enter Your Name</string>
     <string name="mainBannerImage">mainBannerImage</string>
+    <string name="backgroundPoster">backgroundPoster</string>
+    <string name="backNavigation">backNavigation</string>
 </resources>

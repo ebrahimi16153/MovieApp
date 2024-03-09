@@ -19,7 +19,7 @@ interface FavDao {
 
 
     @Query("SELECT * FROM tblFav")
-    suspend fun favMovieList():MutableList<FavMovie>
+     fun favMovieList():MutableList<FavMovie>
 
 
     @Query("SELECT EXISTS (SELECT 1 FROM tblFav WHERE id =:movieId)")

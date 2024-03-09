@@ -33,6 +33,11 @@
 
     </style>
 
+    <!-- shapedImageViewCorner-->
+    <style name="imageViewCorner">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/_10mdp</item>
+    </style>
 
 
     <style name="Theme.MovieApp" parent="Base.Theme.MovieApp" />

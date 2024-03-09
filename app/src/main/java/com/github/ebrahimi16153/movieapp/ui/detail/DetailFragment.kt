@@ -6,14 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.github.ebrahimi16153.movieapp.R
+import com.github.ebrahimi16153.movieapp.databinding.FragmentDetailBinding
 
 class DetailFragment : Fragment() {
+
+    // binding
+    private lateinit var binding :FragmentDetailBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_detail, container, false)
+        binding = FragmentDetailBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
 }

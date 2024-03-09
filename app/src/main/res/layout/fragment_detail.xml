@@ -1,14 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.detail.DetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <!--poster-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/posterLay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_400mdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!--        backgroundPoster-->
+        <ImageView
+            android:id="@+id/backgroundPoster"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.1"
+            android:contentDescription="@string/backgroundPoster"
+            android:src="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--mainPoster-->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/mainPoster"
+            style="@style/imageViewCorner"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginVertical="@dimen/_5mdp"
+            android:scaleType="centerCrop"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="9:16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+       <!--posterShadow-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_200mdp"
+            android:id="@+id/posterShadow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/shadow"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--topButtonLay-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topButtonLay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40mdp"
+        android:layout_margin="@dimen/_16mdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!--backButton-->
+        <ImageView
+            android:id="@+id/detailBackButton"
+            android:layout_width="@dimen/_30mdp"
+            android:layout_height="@dimen/_30mdp"
+            android:background="@drawable/bg_circut"
+            android:contentDescription="@string/backNavigation"
+            android:padding="@dimen/_5mdp"
+            android:src="@drawable/ic_round_arrow_back_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/philippineSilver" />
+
+
+
+
+        <!--favButton-->
+        <ImageView
+            android:padding="@dimen/_5mdp"
+            android:layout_width="@dimen/_30mdp"
+            android:layout_height="@dimen/_30mdp"
+            android:src="@drawable/ic_round_favorite_24"
+            android:id="@+id/detailFavButton"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/bg_circut"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:tint="@color/philippineSilver"
+            android:contentDescription="@string/backNavigation" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+     <!--infoLay-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100mdp"
+        app:layout_constraintBottom_toBottomOf="@+id/posterLay"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/infoLay">
+
+      <!--title-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/_16mdp"
+            android:textSize="@dimen/_18font_mdp"
+            android:gravity="center"
+            android:fontFamily="sans-serif-medium"
+            android:maxLines="2"
+            android:textColor="@color/philippineSilver"
+            android:ellipsize="end"
+            android:id="@+id/detailTitle"/>
+
+       <!--info-->
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
