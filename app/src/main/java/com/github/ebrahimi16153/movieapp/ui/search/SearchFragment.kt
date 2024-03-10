@@ -60,9 +60,6 @@ class SearchFragment : Fragment() {
                     searchMovieListRecycler.initRecycler(layoutManager = LinearLayoutManager(requireContext()), adapter = movieListAdapter)
 
                 }
-
-
-
             }
             movieListAdapter.seOnItemClickListener {data ->
                 val directions = SearchFragmentDirections.actionToDetailFragment3(data.id!!)

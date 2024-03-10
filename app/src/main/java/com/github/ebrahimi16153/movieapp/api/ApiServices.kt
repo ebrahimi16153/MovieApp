@@ -1,5 +1,6 @@
 package com.github.ebrahimi16153.movieapp.api
 
+import com.github.ebrahimi16153.movieapp.models.ResponseOfDetail
 import com.github.ebrahimi16153.movieapp.models.home.ResponseOfGenresList
 import com.github.ebrahimi16153.movieapp.models.home.ResponseOfMovieList
 import com.github.ebrahimi16153.movieapp.models.register.BodyRegister
@@ -33,6 +34,10 @@ interface ApiServices {
     //Search
     @GET("movies")
     suspend fun searchQuery(@Query("q") searchQuery:String):Response<ResponseOfMovieList>
+
+    //getMovieDetail
+    @GET("movies/{movie_id}")
+    suspend fun getMovieDetail(@Path("movie_id") movieId:Int):Response<ResponseOfDetail>
 
 
 }
