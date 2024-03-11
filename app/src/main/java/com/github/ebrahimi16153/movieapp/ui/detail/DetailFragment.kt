@@ -1,6 +1,8 @@
 package com.github.ebrahimi16153.movieapp.ui.detail
 
+import android.graphics.PorterDuff
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.github.ebrahimi16153.movieapp.R
+import com.github.ebrahimi16153.movieapp.data.FavMovie
 import com.github.ebrahimi16153.movieapp.databinding.FragmentDetailBinding
 import com.github.ebrahimi16153.movieapp.utils.initRecycler
 import com.github.ebrahimi16153.movieapp.utils.setVisibility
@@ -36,7 +39,6 @@ class DetailFragment : Fragment() {
 
     //viewModel
     private val viewModel: DetailViewModel by viewModels()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -63,50 +65,59 @@ class DetailFragment : Fragment() {
 
         binding.apply {
 
-            viewModel.detailMovie.observe(viewLifecycleOwner) {
 
-                backgroundPoster.load(it.poster)
-                mainPoster.load(it.poster) {
+            viewModel.detailMovie.observe(viewLifecycleOwner) { response ->
+
+                backgroundPoster.load(response.poster)
+                mainPoster.load(response.poster) {
                     crossfade(true)
                     crossfade(800)
                 }
-                detailTitle.text = it.title
-                rate.text = it.imdbRating
-                time.text = it.runtime
-                year.text = it.year
-                description.text = it.plot
-                actorsName.text = it.actors
+                detailTitle.text = response.title
+                rate.text = response.imdbRating
+                time.text = response.runtime
+                year.text = response.year
+                description.text = response.plot
+                actorsName.text = response.actors
 
-                imageAdapter.differ.submitList(it.images)
+                imageAdapter.differ.submitList(response.images)
                 actorsImage.initRecycler(
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
                     imageAdapter
                 )
 
-                viewModel.loading.observe(viewLifecycleOwner){ show ->
-                    if (show){
+                viewModel.loading.observe(viewLifecycleOwner) { show ->
+                    if (show) {
                         detailLoading.setVisibility(true)
                         detailContent.setVisibility(false)
 
-                    }else{
+                    } else {
                         detailLoading.setVisibility(false)
                         detailContent.setVisibility(true)
                     }
                 }
 
+                //            favButton
+                viewModel.isExists(response.id!!)
+
+
+
+                //back button
+                backButton.setOnClickListener {
+                    findNavController().navigateUp()
+                }
 
             }
 
+            viewModel.isExists.observe(viewLifecycleOwner) {
+                if (it) {
+                    favButton.setColorFilter(resources.getColor(R.color.scarlet, null))
+                } else {
+                    favButton.setColorFilter(resources.getColor(R.color.philippineSilver, null))
 
 
-           //back button
-            detailBackButton.setOnClickListener {
-                findNavController().navigateUp()
-            }
+                }
 
         }
-
-
     }
-
 }

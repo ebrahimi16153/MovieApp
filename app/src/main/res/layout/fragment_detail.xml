@@ -32,8 +32,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:alpha="0.1"
-                    android:scaleType="centerCrop"
                     android:contentDescription="@string/backgroundPoster"
+                    android:scaleType="centerCrop"
                     android:src="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -80,7 +80,7 @@
 
                 <!--backButton-->
                 <ImageView
-                    android:id="@+id/detailBackButton"
+                    android:id="@+id/backButton"
                     android:layout_width="@dimen/_35mdp"
                     android:layout_height="@dimen/_35mdp"
                     android:background="@drawable/bg_circut"
@@ -93,19 +93,20 @@
                     app:tint="@color/philippineSilver" />
 
 
-                <!--favButton-->
+                <!--backButton-->
                 <ImageView
-                    android:id="@+id/detailFavButton"
+                    android:id="@+id/favButton"
                     android:layout_width="@dimen/_35mdp"
                     android:layout_height="@dimen/_35mdp"
                     android:background="@drawable/bg_circut"
-                    android:contentDescription="@string/backNavigation"
+                    android:contentDescription="@string/favorite"
                     android:padding="@dimen/_8mdp"
+                    android:tintMode="multiply"
                     android:src="@drawable/ic_round_favorite_24"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/philippineSilver" />
+                    />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
