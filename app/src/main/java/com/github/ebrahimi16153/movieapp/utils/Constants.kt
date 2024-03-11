@@ -9,7 +9,4 @@ object Constants {
     const val BASE_URL = "https://moviesapi.ir/api/v1/"
     const val CONNECTION_TIME_OUT = 60L
 
-
-    const val FAV_MOVIE_TABLE = "favTable"
-    const val FAV_MOVIE_DATA_BASE = "favDataBase"
 }

@@ -3,7 +3,6 @@ package com.github.ebrahimi16153.movieapp.ui.favorite
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -68,7 +67,7 @@ class FavMovieListAdapter @Inject constructor():RecyclerView.Adapter<FavMovieLis
 
         fun setData(data:List<FavMovie>){
 
-            val movieListDiffer:MovieListDiffer = MovieListDiffer(oldItems = movieList , newItems = data)
+            val movieListDiffer = MovieListDiffer(oldItems = movieList , newItems = data)
             val diffUtil = DiffUtil.calculateDiff(movieListDiffer)
             movieList = data
             diffUtil.dispatchUpdatesTo(this)

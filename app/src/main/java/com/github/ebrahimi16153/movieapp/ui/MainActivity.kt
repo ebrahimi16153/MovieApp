@@ -1,10 +1,9 @@
 package com.github.ebrahimi16153.movieapp.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.github.ebrahimi16153.movieapp.R
@@ -34,7 +33,7 @@ class MainActivity : AppCompatActivity() {
             // handel which destination show bottom nav
             navController.addOnDestinationChangedListener { _, destination, _ ->
 
-                if (destination.id == R.id.splashFragment2) {
+                if (destination.id == R.id.splashFragment2 || destination.id == R.id.detailFragment3) {
                     bottomNav.visibility = View.GONE
                 } else {
                     bottomNav.visibility = View.VISIBLE

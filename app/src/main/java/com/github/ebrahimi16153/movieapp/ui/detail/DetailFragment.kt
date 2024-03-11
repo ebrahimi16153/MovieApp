@@ -1,13 +1,13 @@
 package com.github.ebrahimi16153.movieapp.ui.detail
 
-import android.graphics.PorterDuff
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +19,7 @@ import com.github.ebrahimi16153.movieapp.utils.initRecycler
 import com.github.ebrahimi16153.movieapp.utils.setVisibility
 import com.github.ebrahimi16153.movieapp.viewmodel.DetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -39,6 +40,10 @@ class DetailFragment : Fragment() {
 
     //viewModel
     private val viewModel: DetailViewModel by viewModels()
+
+
+    @Inject
+    lateinit var movie: FavMovie
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -97,26 +102,92 @@ class DetailFragment : Fragment() {
                     }
                 }
 
-                //            favButton
-                viewModel.isExists(response.id!!)
+                movie = FavMovie(
+                    id = response.id!!,
+                    poster = response.poster!!,
+                    title = response.title!!,
+                    rate = response.imdbRating!!,
+                    country = response.country!!,
+                    year = response.year!!
+                )
+
+                // other Way
+                favButton.setOnClickListener {
+
+                    viewModel.favoriteMovie(movieId, movie)
 
 
-
-                //back button
-                backButton.setOnClickListener {
-                    findNavController().navigateUp()
                 }
+
+                //               my way
+//                viewModel.isExists(response.id)
+//                viewModel.isExists.observe(viewLifecycleOwner){isExists ->
+//
+//                    if (isExists){
+//                        favButton.setColorFilter(resources.getColor(R.color.scarlet, null))
+//                    }else{
+//                        favButton.setColorFilter(resources.getColor(R.color.philippineSilver, null))
+//                    }
+//
+//                    favButton.setOnClickListener {
+//                        if (isExists){
+//
+//                            viewModel.deleteFav(movie)
+//                            favButton.setColorFilter(resources.getColor(R.color.philippineSilver, null))
+//
+//
+//                        }else{
+//                            viewModel.insertFav(movie)
+//                            favButton.setColorFilter(resources.getColor(R.color.scarlet, null))
+//                        }
+//                    }
+//                }
 
             }
+            backButton.setOnClickListener {
+                findNavController().navigateUp()
+            }
 
-            viewModel.isExists.observe(viewLifecycleOwner) {
-                if (it) {
-                    favButton.setColorFilter(resources.getColor(R.color.scarlet, null))
+            //other way
+//            default fav icon color
+            lifecycleScope.launch {
+                if (viewModel.existsMovie(movieId)) {
+                    favButton.setColorFilter(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            R.color.scarlet
+                        )
+                    )
                 } else {
-                    favButton.setColorFilter(resources.getColor(R.color.philippineSilver, null))
-
-
+                    favButton.setColorFilter(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            R.color.philippineSilver
+                        )
+                    )
                 }
+            }
+
+            // change tint of favButton after click
+            viewModel.isFavorite.observe(viewLifecycleOwner) {
+                if (it) {
+                    favButton.setColorFilter(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            R.color.scarlet
+                        )
+                    )
+                } else {
+                    favButton.setColorFilter(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            R.color.philippineSilver
+                        )
+                    )
+                }
+
+
+            }
 
         }
     }

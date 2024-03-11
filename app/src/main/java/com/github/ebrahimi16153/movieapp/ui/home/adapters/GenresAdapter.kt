@@ -6,9 +6,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.github.ebrahimi16153.movieapp.databinding.GenresItemBinding
-import com.github.ebrahimi16153.movieapp.models.home.ResponseOfGenresList
-import com.github.ebrahimi16153.movieapp.models.home.ResponseOfGenresList.*
-import java.util.Objects
+import com.github.ebrahimi16153.movieapp.models.home.ResponseOfGenresList.ResponseOfGenresListItem
 import javax.inject.Inject
 
 class GenresAdapter @Inject constructor() : RecyclerView.Adapter<GenresAdapter.ViewHolder>() {
@@ -25,7 +23,7 @@ class GenresAdapter @Inject constructor() : RecyclerView.Adapter<GenresAdapter.V
 
     override fun getItemCount() = differ.currentList.size
 
-    inner class ViewHolder() : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder : RecyclerView.ViewHolder(binding.root) {
 
         fun setData(item: ResponseOfGenresListItem) {
 

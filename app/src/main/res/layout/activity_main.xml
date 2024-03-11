@@ -29,7 +29,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/bottomNav"
-    android:backgroundTint="@color/chineseBlack"
+    android:background="@color/chineseBlack"
     app:labelVisibilityMode="unlabeled"
     app:layout_constraintBottom_toBottomOf="parent"
     app:itemIconTint="@color/bottom_nav_color"

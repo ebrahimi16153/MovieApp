@@ -3,13 +3,10 @@ package com.github.ebrahimi16153.movieapp.ui.home.adapters
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.github.ebrahimi16153.movieapp.databinding.MainbannerHomeItemsBinding
 import com.github.ebrahimi16153.movieapp.databinding.MovieListItemBinding
-import com.github.ebrahimi16153.movieapp.models.home.ResponseOfMovieList
 import com.github.ebrahimi16153.movieapp.models.home.ResponseOfMovieList.Data
 import javax.inject.Inject
 
@@ -67,7 +64,7 @@ class MovieListAdapter @Inject constructor() :
 
     fun setData(data:List<Data>){
 
-        val movieListDiffer:MovieListDiffer = MovieListDiffer(oldItems = movieList , newItems = data)
+        val movieListDiffer = MovieListDiffer(oldItems = movieList , newItems = data)
         val diffUtil = DiffUtil.calculateDiff(movieListDiffer)
         movieList = data
         diffUtil.dispatchUpdatesTo(this)

@@ -28,7 +28,7 @@ class DetailImageAdapter @Inject constructor() :
 
     override fun getItemCount() = differ.currentList.size
 
-    inner class ViewHolder() : RecyclerView.ViewHolder(binding.root){
+    inner class ViewHolder : RecyclerView.ViewHolder(binding.root){
         fun setData(item:String){
             binding.actorImageItem.load(item){
                 crossfade(true)

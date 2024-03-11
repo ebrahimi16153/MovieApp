@@ -23,7 +23,7 @@ data class ResponseOfMovieList(
         @SerializedName("poster")
         val poster: String?, // https://moviesapi.ir/images/tt0111161_poster.jpg
         @SerializedName("title")
-        val title: String?, // The Shawshank Redemption
+        val title: String?,
         @SerializedName("year")
         val year: String? // 1994
     )

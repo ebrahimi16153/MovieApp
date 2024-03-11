@@ -7,7 +7,9 @@ import javax.inject.Inject
 
 class DetailRepository @Inject constructor(private val apiServices: ApiServices ,private val favDao: FavDao) {
 
+   //api
    suspend fun getDetailMovie(movieId:Int) = apiServices.getMovieDetail(movieId = movieId)
+   //dataBase
    suspend fun insert(favMovie: FavMovie) = favDao.insert(favMovie)
 
    suspend fun delete(favMovie: FavMovie) = favDao.delete(favMovie)

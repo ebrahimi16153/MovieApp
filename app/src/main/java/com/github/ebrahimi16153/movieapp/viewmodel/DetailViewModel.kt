@@ -3,12 +3,12 @@ package com.github.ebrahimi16153.movieapp.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.ebrahimi16153.movieapp.data.FavDao
 import com.github.ebrahimi16153.movieapp.data.FavMovie
 import com.github.ebrahimi16153.movieapp.models.ResponseOfDetail
 import com.github.ebrahimi16153.movieapp.repository.DetailRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
@@ -18,7 +18,8 @@ class DetailViewModel @Inject constructor(private val detailRepository: DetailRe
 
     val detailMovie = MutableLiveData<ResponseOfDetail>()
     val loading = MutableLiveData<Boolean>()
-    val isExists = MutableLiveData<Boolean>()
+
+
 
 
     fun getDetailMovie(movieId: Int) = viewModelScope.launch {
@@ -33,19 +34,42 @@ class DetailViewModel @Inject constructor(private val detailRepository: DetailRe
     }
 
 
-    // save to db
-    fun insertFav(favMovie: FavMovie) = viewModelScope.launch {
-        detailRepository.insert(favMovie)
-    }
+    // dataBase
+   // my way
+//    val isExists = MutableLiveData<Boolean>()
+//    fun insertFav(favMovie: FavMovie) = viewModelScope.launch {
+//        detailRepository.insert(favMovie)
+//    }
+//
+//    fun isExists(movieId: Int) = viewModelScope.launch {
+//        val exists = detailRepository.isExists(movieId)
+//
+//        if (exists) isExists.postValue(true) else isExists.postValue(false)
+//    }
+//
+//    fun deleteFav(favMovie: FavMovie) = viewModelScope.launch {
+//        detailRepository.delete(favMovie)
+//    }
 
-    fun isExists(movieId: Int) = viewModelScope.launch {
+
+    // other way
+
+    val isFavorite = MutableLiveData<Boolean>()
+    suspend fun  existsMovie(movieId:Int) = withContext(viewModelScope.coroutineContext){   detailRepository.isExists(movieId)  }
+
+
+    //for onclickListener favButton
+    fun favoriteMovie(movieId:Int , favMovie: FavMovie) = viewModelScope.launch {
+
         val exists = detailRepository.isExists(movieId)
+        if (exists){
+            isFavorite.postValue(false)
+            detailRepository.delete(favMovie)
+        }else{
+            isFavorite.postValue(true)
+            detailRepository.insert(favMovie)
+        }
 
-        if (exists) isExists.postValue(true) else isExists.postValue(false)
-    }
-
-    fun deleteFav(favMovie: FavMovie) = viewModelScope.launch {
-        detailRepository.delete(favMovie)
     }
 
 
