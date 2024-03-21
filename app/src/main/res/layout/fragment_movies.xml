@@ -5,6 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.movies.Movies">
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:id="@+id/moviesRefresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <!--lastMovie items-->
     <androidx.recyclerview.widget.RecyclerView
@@ -18,6 +22,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
 <!--     loading-->
     <ProgressBar

@@ -14,7 +14,7 @@ import javax.inject.Inject
 class MoviesViewModel @Inject constructor(private val moviesRepository: MoviesRepository):ViewModel() {
 
     // get LastMovieList
-    val allMovieList = Pager(PagingConfig(20)){
+    val allMovieList = Pager(PagingConfig(1)){
         MoviesPaging( repository = moviesRepository)
     }.flow.cachedIn(viewModelScope)
 }

@@ -27,7 +27,7 @@ class MoviesAdapter @Inject constructor() :
     }
 
 
-    inner class ViewHolder() : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder : RecyclerView.ViewHolder(binding.root) {
         fun setData(item: ResponseOfMovieList.Data) {
 
             binding.apply {

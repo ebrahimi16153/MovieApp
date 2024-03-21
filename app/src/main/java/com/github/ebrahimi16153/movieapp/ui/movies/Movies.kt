@@ -83,6 +83,11 @@ class Movies : Fragment() {
                 findNavController().navigate(directions)
 
             }
+            // swipe to refresh
+            moviesRefresh.setOnRefreshListener {
+                moviesRefresh.isRefreshing = false
+                moviesAdapter.refresh()
+            }
 
         }
     }
