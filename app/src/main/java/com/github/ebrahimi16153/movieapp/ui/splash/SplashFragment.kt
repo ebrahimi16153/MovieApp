@@ -41,15 +41,14 @@ class SplashFragment : Fragment() {
         // delay
         lifecycle.coroutineScope.launch {
 
-            delay(2000)
+            delay(500)
             // if userToken exist -> home else -> register
             userTokenDataStore.userToken.collect { token ->
 
                 if (token.isEmpty())
                     findNavController().navigate(R.id.actionSpalshToRegister)
                 else
-                    findNavController().navigate(R.id.actionToHome
-                )
+                    findNavController().navigate(R.id.actionToHome)
             }
         }
     }

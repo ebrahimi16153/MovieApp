@@ -86,7 +86,9 @@ class Movies : Fragment() {
             // swipe to refresh
             moviesRefresh.setOnRefreshListener {
                 moviesRefresh.isRefreshing = false
+
                 moviesAdapter.refresh()
+
             }
 
         }
