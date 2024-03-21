@@ -3,8 +3,12 @@ package com.github.ebrahimi16153.movieapp.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
 import com.github.ebrahimi16153.movieapp.models.home.ResponseOfGenresList
 import com.github.ebrahimi16153.movieapp.models.home.ResponseOfMovieList
+import com.github.ebrahimi16153.movieapp.paging.LastMoviePaging
 import com.github.ebrahimi16153.movieapp.repository.HomeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -15,13 +19,14 @@ class HomeViewModel @Inject constructor(private val homeRepository: HomeReposito
 
     val mainBannerMoveList = MutableLiveData<ResponseOfMovieList>()
     val genres = MutableLiveData<ResponseOfGenresList>()
-    val lastMovieList = MutableLiveData<ResponseOfMovieList>()
+//    val lastMovieList = MutableLiveData<ResponseOfMovieList>()
     val loadingState = MutableLiveData<Boolean>()
 
 
     // get MainBanner Movie List
     fun getMainBannerMovieList(id: Int) {
         viewModelScope.launch {
+            loadingState.postValue(true)
 
             val response = homeRepository.getMainBannerContent(id = id)
 
@@ -30,7 +35,7 @@ class HomeViewModel @Inject constructor(private val homeRepository: HomeReposito
                 mainBannerMoveList.postValue(response.body())
 
             }
-
+            loadingState.postValue(false)
         }
 
 
@@ -49,18 +54,26 @@ class HomeViewModel @Inject constructor(private val homeRepository: HomeReposito
     }
 
     // get LastMovieList
-    fun latMovieList() {
-        viewModelScope.launch {
-            loadingState.postValue(true)
-            val response = homeRepository.getLastMovie()
-            if (response.isSuccessful) {
+    val latestMovieList = Pager(PagingConfig(1)){
+        LastMoviePaging( repository = homeRepository)
+    }.flow.cachedIn(viewModelScope)
 
-                lastMovieList.postValue(response.body())
 
-            }
-            loadingState.postValue(false)
-        }
-    }
+
+//    without paging
+
+//    fun latMovieList() {
+//        viewModelScope.launch {
+//            loadingState.postValue(true)
+//            val response = homeRepository.getLastMovie()
+//            if (response.isSuccessful) {
+//
+//                lastMovieList.postValue(response.body())
+//
+//            }
+//            loadingState.postValue(false)
+//        }
+//    }
 
 
 }

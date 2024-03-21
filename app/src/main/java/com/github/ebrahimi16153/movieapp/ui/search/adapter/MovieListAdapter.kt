@@ -1,4 +1,4 @@
-package com.github.ebrahimi16153.movieapp.ui.home.adapters
+package com.github.ebrahimi16153.movieapp.ui.search.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -19,13 +19,13 @@ class MovieListAdapter @Inject constructor() :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): MovieListAdapter.ViewHolder {
+    ): ViewHolder {
         binding =
             MovieListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder()
     }
 
-    override fun onBindViewHolder(holder: MovieListAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindViews(item = movieList[position])
         // for handel duplicated item
         holder.setIsRecyclable(false)
@@ -91,12 +91,16 @@ class MovieListAdapter @Inject constructor() :
     }
 
 
+
     // onClickListener
     private var onItemClickListener:((Data) -> Unit)? = null
 
     fun seOnItemClickListener(listener:(Data) -> Unit){
         onItemClickListener = listener
     }
+
+
+
 
 
 }

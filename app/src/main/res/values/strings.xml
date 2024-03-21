@@ -25,4 +25,6 @@
     <string name="mainBannerImage">mainBannerImage</string>
     <string name="backgroundPoster">backgroundPoster</string>
     <string name="backNavigation">backNavigation</string>
+    <string name="error">somting wrong</string>
+    <string name="retry">retry</string>
 </resources>

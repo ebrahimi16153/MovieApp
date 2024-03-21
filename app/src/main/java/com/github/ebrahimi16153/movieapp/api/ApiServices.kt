@@ -29,7 +29,7 @@ interface ApiServices {
 
     // list of last movie
     @GET("movies")
-    suspend fun getLastMovie():Response<ResponseOfMovieList>
+    suspend fun getLastMovie(@Query("page") page:Int):Response<ResponseOfMovieList>
 
     //Search
     @GET("movies")

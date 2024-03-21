@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.ebrahimi16153.movieapp.databinding.FragmentSearchBinding
-import com.github.ebrahimi16153.movieapp.ui.home.adapters.MovieListAdapter
+import com.github.ebrahimi16153.movieapp.ui.search.adapter.MovieListAdapter
 import com.github.ebrahimi16153.movieapp.utils.initRecycler
 import com.github.ebrahimi16153.movieapp.utils.setVisibility
 import com.github.ebrahimi16153.movieapp.viewmodel.SearchViewModel
