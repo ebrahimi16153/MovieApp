@@ -55,5 +55,10 @@
     <action
         android:id="@+id/actionToDetailFragment3"
         app:destination="@id/detailFragment3" />
+    <fragment
+        android:id="@+id/movies"
+        android:name="com.github.ebrahimi16153.movieapp.ui.movies.Movies"
+        android:label="fragment_movies"
+        tools:layout="@layout/fragment_movies" />
 
 </navigation>

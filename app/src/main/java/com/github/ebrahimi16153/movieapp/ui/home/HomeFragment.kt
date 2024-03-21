@@ -6,21 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.github.ebrahimi16153.movieapp.databinding.FragmentHomeBinding
 import com.github.ebrahimi16153.movieapp.ui.home.adapters.GenresAdapter
-import com.github.ebrahimi16153.movieapp.ui.home.adapters.LastMovieAdapter
-import com.github.ebrahimi16153.movieapp.ui.home.adapters.LoadMoreAdapter
 import com.github.ebrahimi16153.movieapp.ui.home.adapters.MainBannerAdapter
+import com.github.ebrahimi16153.movieapp.ui.search.adapter.MovieListAdapter
 import com.github.ebrahimi16153.movieapp.utils.initRecycler
 import com.github.ebrahimi16153.movieapp.utils.setVisibility
 import com.github.ebrahimi16153.movieapp.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -37,7 +32,7 @@ class HomeFragment : Fragment() {
     lateinit var genresAdapter: GenresAdapter
 
     @Inject
-    lateinit var lastMovieListAdapter: LastMovieAdapter
+    lateinit var lastMovieListAdapter: MovieListAdapter
 
 
     // viewModel
@@ -57,6 +52,7 @@ class HomeFragment : Fragment() {
         //call api for once
         viewModel.getMainBannerMovieList(id = 3)
         viewModel.genresList()
+        viewModel.latMovieList(2)
     }
 
     override fun onCreateView(
@@ -123,40 +119,33 @@ class HomeFragment : Fragment() {
                 )
 
 
+
+            }
+
+
+            viewModel.lastMovieList.observe(viewLifecycleOwner){
+
+                lastMovieListAdapter.setData(it.data)
+
+                lastMovieRecyclerView.initRecycler(layoutManager = LinearLayoutManager(requireContext()), adapter = lastMovieListAdapter)
+
+                // swipe to refresh
+                swipeToRefresh.setOnRefreshListener {
+                    swipeToRefresh.isRefreshing = false
+                    lastMovieListAdapter.setData(it.data)
+                }
+
+
             }
 
             //load LastMovieList by Paging
 
-            lifecycleScope.launch {
-                viewModel.latestMovieList.collectLatest {
 
-                    lastMovieListAdapter.submitData(it)
-
-                }
-            }
-
-            // last movie recycler
-            lastMovieRecyclerView.initRecycler(
-                layoutManager = LinearLayoutManager(requireContext()),
-                adapter = lastMovieListAdapter.withLoadStateFooter(
-                    LoadMoreAdapter(setOnItemClick = {
-                        lastMovieListAdapter.retry()
-                    })
-                )
-            )
-            // onItemClickListener
-            lastMovieListAdapter.seOnItemClickListener {data ->
-                val directions = HomeFragmentDirections.actionToDetailFragment3(data.id!!)
-                findNavController().navigate(directions)
-            }
 
 
             // swipe to refresh
 
-            swipeToRefresh.setOnRefreshListener {
-                swipeToRefresh.isRefreshing = false
-                lastMovieListAdapter.refresh()
-            }
+
         }
 
 

@@ -3,12 +3,8 @@ package com.github.ebrahimi16153.movieapp.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.cachedIn
 import com.github.ebrahimi16153.movieapp.models.home.ResponseOfGenresList
 import com.github.ebrahimi16153.movieapp.models.home.ResponseOfMovieList
-import com.github.ebrahimi16153.movieapp.paging.LastMoviePaging
 import com.github.ebrahimi16153.movieapp.repository.HomeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -19,7 +15,7 @@ class HomeViewModel @Inject constructor(private val homeRepository: HomeReposito
 
     val mainBannerMoveList = MutableLiveData<ResponseOfMovieList>()
     val genres = MutableLiveData<ResponseOfGenresList>()
-//    val lastMovieList = MutableLiveData<ResponseOfMovieList>()
+    val lastMovieList = MutableLiveData<ResponseOfMovieList>()
     val loadingState = MutableLiveData<Boolean>()
 
 
@@ -53,27 +49,24 @@ class HomeViewModel @Inject constructor(private val homeRepository: HomeReposito
         }
     }
 
-    // get LastMovieList
-    val latestMovieList = Pager(PagingConfig(1)){
-        LastMoviePaging( repository = homeRepository)
-    }.flow.cachedIn(viewModelScope)
+
 
 
 
 //    without paging
 
-//    fun latMovieList() {
-//        viewModelScope.launch {
-//            loadingState.postValue(true)
-//            val response = homeRepository.getLastMovie()
-//            if (response.isSuccessful) {
-//
-//                lastMovieList.postValue(response.body())
-//
-//            }
-//            loadingState.postValue(false)
-//        }
-//    }
+    fun latMovieList(page :Int) {
+        viewModelScope.launch {
+            loadingState.postValue(true)
+            val response = homeRepository.getLastMovie(page)
+            if (response.isSuccessful) {
+
+                lastMovieList.postValue(response.body())
+
+            }
+            loadingState.postValue(false)
+        }
+    }
 
 
 }

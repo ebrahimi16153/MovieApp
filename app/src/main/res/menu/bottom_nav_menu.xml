@@ -7,6 +7,12 @@
 
 
     <item
+        android:id="@+id/movies"
+        android:icon="@drawable/movie"
+        android:title="@string/movies" />
+
+
+    <item
         android:id="@+id/searchFragment"
         android:icon="@drawable/ic_round_search_24"
         android:title="@string/search" />

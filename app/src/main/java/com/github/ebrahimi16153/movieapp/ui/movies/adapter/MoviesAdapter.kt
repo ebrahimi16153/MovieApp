@@ -1,4 +1,4 @@
-package com.github.ebrahimi16153.movieapp.ui.home.adapters
+package com.github.ebrahimi16153.movieapp.ui.movies.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,19 +10,20 @@ import com.github.ebrahimi16153.movieapp.databinding.MovieListItemBinding
 import com.github.ebrahimi16153.movieapp.models.home.ResponseOfMovieList
 import javax.inject.Inject
 
-class LastMovieAdapter @Inject constructor() :
-    PagingDataAdapter<ResponseOfMovieList.Data, LastMovieAdapter.ViewHolder>(diffCallback = differCallback) {
+class MoviesAdapter @Inject constructor() :
+    PagingDataAdapter<ResponseOfMovieList.Data, MoviesAdapter.ViewHolder>(diffCallback = differCallback) {
 
     private lateinit var binding: MovieListItemBinding
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LastMovieAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         binding = MovieListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder()
     }
 
-    override fun onBindViewHolder(holder: LastMovieAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setData(item = getItem(position)!!)
+        holder.setIsRecyclable(false)
     }
 
 
@@ -31,7 +32,7 @@ class LastMovieAdapter @Inject constructor() :
 
             binding.apply {
 
-                moviePoster.load(data = item.poster) {
+                moviePoster.load(data = item.poster){
                     crossfade(true)
                     crossfade(500)
                 }

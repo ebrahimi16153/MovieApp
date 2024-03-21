@@ -27,4 +27,5 @@
     <string name="backNavigation">backNavigation</string>
     <string name="error">somting wrong</string>
     <string name="retry">retry</string>
+    <string name="movies">Movies</string>
 </resources>

@@ -3,10 +3,10 @@ package com.github.ebrahimi16153.movieapp.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.github.ebrahimi16153.movieapp.models.home.ResponseOfMovieList
-import com.github.ebrahimi16153.movieapp.repository.HomeRepository
+import com.github.ebrahimi16153.movieapp.repository.MoviesRepository
 import javax.inject.Inject
 
-class LastMoviePaging @Inject constructor(private val repository: HomeRepository) :
+class MoviesPaging @Inject constructor(private val repository: MoviesRepository) :
     PagingSource<Int, ResponseOfMovieList.Data>() {
     override fun getRefreshKey(state: PagingState<Int, ResponseOfMovieList.Data>): Int? {
         return null
@@ -16,7 +16,7 @@ class LastMoviePaging @Inject constructor(private val repository: HomeRepository
         return try {
 
             val currentPage = params.key ?: 1
-            val response = repository.getLastMovie(page = currentPage)
+            val response = repository.getAllMovie(page = currentPage)
 
             //if api fail
             val data = response.body()?.data ?: emptyList()
